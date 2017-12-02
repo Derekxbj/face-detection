@@ -28,3 +28,12 @@ After installing all the prerequisite packages, you can run the code now. To run
 ```
 python detect_smile.py --cascade haarcascade_frontalface_default.xml --model output/lenet.hdf5 
 ```
+If running detect_smile_simple.py, you can just simply enter:
+```
+python -i detect_smile_simple.py
+```
+and enter:
+```
+count = detect_smile()
+```
+It will return the number of frame with label of "Smiling".
