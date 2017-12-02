@@ -104,5 +104,5 @@ def detect_smile():
 
 	return count
 
-count = detect_smile() 
-print(count)
+# count = detect_smile() 
+# print(count)
