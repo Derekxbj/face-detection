@@ -10,7 +10,7 @@ import imutils
 import cv2
 from datetime import datetime
 
-def detect_smile():
+def detect_smile(seconds):
 	# the arguments we need 
 	# ap = argparse.ArgumentParser()
 	# ap.add_argument("-c", "--cascade", required=True,
@@ -94,7 +94,7 @@ def detect_smile():
 
 		# we make the scenerio to run the CNN for a period of time
 		toc = datetime.now()
-		if (toc-tic).total_seconds() > 7:
+		if (toc-tic).total_seconds() > seconds:
 			break
 		# print('Elapsed time: %f seconds' % (toc-tic).total_seconds())
 		# print(count)
