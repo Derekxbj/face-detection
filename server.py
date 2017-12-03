@@ -6,7 +6,8 @@ from detect_smile_simple import *
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to the port
-server_address = ('161.253.127.132', 10020)
+# The server address is the computer running CNN 
+server_address = ('161.253.126.129', 10023)
 print ('starting up on %s port %s' % server_address)
 sock.bind(server_address)
 
@@ -24,23 +25,34 @@ while True:
         # Receive the data in small chunks and retransmit it
         while True:
             data = connection.recv(16)
-            print ('received "%s"' % data)
+            data = str(data)
+            # print ('received "%s"'  + data)
             if data:
                 print ('sending data back to the client')
 
-                print (data)
+                print(data)
+                print(data[2])
+                print(len(data))
+                print(type(data))
 
-                counts = detect_smile()
+                seconds = int(data[2])
+
+                counts = detect_smile(seconds)
 
                 if counts > 0:
 
                     print("The patient is positive")
-                    result = "positive"
+                    result = '1'
+                    result_b = result.encode()
 
-                connection.sendall(result)
-            else:
-                print ('no more data from', client_address)
-                break
+                else:
+                    result = '0'
+                    result_b = result.encode()
+
+                connection.sendall(result_b)
+            # else:
+            #     print ('no more data from', client_address)
+            #     break
 
     finally:
         # Clean up the connection
